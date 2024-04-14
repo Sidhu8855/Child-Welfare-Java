@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.Child.ChildWelfareJavaProject.Entity.User;
 import com.Child.ChildWelfareJavaProject.Responce.Responce;
+import com.Child.ChildWelfareJavaProject.dto.LoginRequest;
 import com.Child.ChildWelfareJavaProject.repositry.UserRepositry;
 import com.Child.ChildWelfareJavaProject.service.UserService;
+import com.Child.ChildWelfareJavaProject.role.UserRole;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,10 +38,54 @@ public class UserServiceImpl implements UserService {
 			return responce;
 		} else
 
-			user.setStatus(true);
+		user.setStatus(true);
 		userRepositry.save(user);
 		responce.setUserSaveResponse(user);
 		return responce;
 	}
+	
+	//login user side
+	@Override
+	public Responce loginUser(LoginRequest loginRequest) {
+	    Responce responce = new Responce();
 
+	    if (loginRequest != null) {
+	        String loginEmail = loginRequest.getUseremail();
+	        String loginPassword = loginRequest.getPassword();
+	        
+	        // Find user by email
+	        Optional<User> byEmail = userRepositry.findByEmail(loginEmail);
+
+	        if (byEmail.isPresent()) {
+	            User user = byEmail.get();
+
+	            // Check if the provided password matches the user's password
+	            if (loginPassword.equals(user.getPassword())) {
+	                // Password matches
+	                
+	                if (UserRole.USER.equals(user.getRole())||UserRole.ADMIN.equals(user.getRole())) {
+	                   
+	                    responce.loginSuccessFully(user);
+	                } else {
+	                   
+	                	responce.loginFailedByUserRole();
+	                }
+	            } else {
+	                // Password doesn't match
+	            	responce.loginFailedByIncorrectPassword();
+	            }
+	        } else {
+	           
+	        	responce.invalidEmail();
+	        }
+	    } else {
+	      
+	    	responce.fieldIsNull();
+	    }
+
+	    return responce;
+	}
+
+	
+	
 }
