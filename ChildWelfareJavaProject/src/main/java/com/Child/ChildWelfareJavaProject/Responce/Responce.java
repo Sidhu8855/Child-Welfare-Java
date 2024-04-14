@@ -3,6 +3,11 @@ package com.Child.ChildWelfareJavaProject.Responce;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
+import com.Child.ChildWelfareJavaProject.Entity.User;
+
+
+
+
 public class Responce {
 
 	private Object response;
@@ -96,6 +101,51 @@ public class Responce {
 		this.status=false;
 		this.statusCode=HttpStatus.NOT_FOUND;
 		this.message=Message.IdNotFound;
+		
+	}
+
+	public void setUserLoggedInResponse(User user) {
+		this.response=user;
+		this.status=true;
+		this.statusCode=HttpStatus.OK;
+		this.message=Message.User_Found;
+		
+	}
+
+	public void invalidPassword() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void loginSuccessFully(User users) {
+		this.response = users;
+		this.status = true;
+		this.statusCode = HttpStatus.OK;
+		this.message = Message.login_successfully;
+		
+	}
+
+	public void loginFailedByUserRole() {
+		this.response = null;
+		this.status = false;
+		this.statusCode = HttpStatus.FORBIDDEN;
+		this.message = Message.user_role;
+		
+	}
+
+	public void loginFailedByIncorrectPassword() {
+		this.response = null;
+		this.status = false;
+		this.statusCode = HttpStatus.UNAUTHORIZED;
+		this.message = Message.incorrect_password;
+		
+	}
+
+	public void invalidEmail() {
+		this.response = null;
+		this.status = false;
+		this.statusCode = HttpStatus.NOT_FOUND;
+		this.message = Message.invalid_User_Email;
 		
 	}
 

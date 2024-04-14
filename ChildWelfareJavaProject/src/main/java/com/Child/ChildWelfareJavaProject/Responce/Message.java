@@ -17,6 +17,8 @@ public class Message {
 	public static String user_role="USER_ROLE_DOES NOT ALLOW TO LOGIN";
 	public static String incorrect_password="User Password is InCorrect ";
 	public static String incorrect_email="Email Id Is Not Correct";
+	public static String login_successfully="login SuccessFull";
+	public static String invalid_User_Email="Email Id Is Not Correct";
 	
 	public static final String User_Found="User Id Is Found";
 	
