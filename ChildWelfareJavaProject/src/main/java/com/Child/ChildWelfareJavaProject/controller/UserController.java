@@ -80,6 +80,7 @@ public class UserController {
 		}
 		}
 	
+	
 
 	
 	
@@ -114,6 +115,9 @@ public class UserController {
     }
     
    
+    	public void getnewemp() {
+		
+	}
 	
 	
 
