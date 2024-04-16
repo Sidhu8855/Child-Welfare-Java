@@ -7,10 +7,9 @@ import com.Child.ChildWelfareJavaProject.dto.LoginRequest;
 public interface UserService {
 
 	Responce save(User user);
-
-	
-
 	Responce loginUser(LoginRequest loginRequest);
+	
+	
 
 	
 }
