@@ -9,22 +9,9 @@ import jakarta.persistence.Lob;
 
 @Entity
 public class Child {
-	
-//	private String studentname;
-//	private Number age;
-//	private String location;
-//	
-//	private String gender;
-//	private String bloodgroup;
-//	
-//	@Column(columnDefinition = "LONGBLOB")
-//	@Lob
-//	private byte[] student_images;
-//	
-	
-	
+		
     @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	private String studentname;
 	
@@ -38,6 +25,7 @@ public class Child {
 	@Column(columnDefinition = "LONGBLOB")
 	@Lob
     private byte[] studentimages;
+	
 	public Long getId() {
 		return id;
 	}

@@ -2,7 +2,7 @@ package com.Child.ChildWelfareJavaProject.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +25,8 @@ import com.Child.ChildWelfareJavaProject.dto.LoginRequest;
 import com.Child.ChildWelfareJavaProject.repositry.ChildRepositry;
 import com.Child.ChildWelfareJavaProject.service.UserService;
 
-@CrossOrigin
+//@CrossOrigin(origins = "http://localhost:8100")
+@CrossOrigin("*")
 @RestController
 @Controller
 
@@ -78,7 +79,7 @@ public class UserController {
 		e.printStackTrace();
 		return new ResponseEntity<>("Failed to upload file", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		}
+}
 	
 	
 
@@ -91,22 +92,7 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
     
-    
-	
-//  @GetMapping("/{id}")
-//        public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
-//              Optional<Child> optionalImage = childRepository.findById(id);
-//              if (optionalImage.isPresent()) {
-//                 Child image = optionalImage.get();
-//                  return ResponseEntity.ok()
-//                                  .contentType(org.springframework.http.MediaType.IMAGE_PNG)
-//                         .body(image.getStudentimages());
-//              } else {
-//                  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//              }
-//          }
-          
-      
+        
   
     @GetMapping("children")
     public ResponseEntity<List<Child>> getAllChildren() {

@@ -17,32 +17,82 @@ import com.Child.ChildWelfareJavaProject.role.UserRole;
 public class UserServiceImpl implements UserService {
 	@Autowired
    private	UserRepositry userRepositry;
+//	@Override
+//	public Responce save(User user) {
+//		Responce responce = new Responce();
+//		if (user.getUser_id() != null) {
+//			Optional<User> userbyId = userRepositry.findById(user.getUser_id());
+//			if (userbyId != null && userbyId.isPresent()) {
+//				user.setStatus(true);
+//				userRepositry.save(user);
+//				responce.Updateuser(user);
+//				return responce;
+//			} else
+//				responce.userNotFound();
+//			return responce;
+//		}
+//
+//		Optional<User> byEmail = userRepositry.findbyEmail(user.getUseremail());
+//		if (byEmail.isPresent()) {
+//			responce.EmailAllReadyPresent();
+//			return responce;
+//		} else
+//
+//		user.setStatus(true);
+//		userRepositry.save(user);
+//		responce.setUserSaveResponse(user);
+//		return responce;
+//	}
+	
+	
 	@Override
-	public Responce save(User user) {
-		Responce responce = new Responce();// success responce class responce set
-		if (user.getUser_id() != null) {
-			Optional<User> userbyId = userRepositry.findById(user.getUser_id());
-			if (userbyId != null && userbyId.isPresent()) {
-				user.setStatus(true);
-				userRepositry.save(user);
-				responce.Updateuser(user);
-				return responce;
-			} else
-				responce.userNotFound();
-			return responce;
-		}
+    public Responce save(User user) {
+		Responce responce = new Responce();
+        if (user.getUser_id() != null) {
+            Optional<User> userById = userRepositry.findById(user.getUser_id());
+            if (userById.isPresent()) {
+                user.setStatus(true);
+                userRepositry.save(user);
+                responce.Updateuser(user);
+                return responce;
+            } else {
+            	responce.userNotFound();
+                return responce;
+            }
+        }
 
-		Optional<User> byEmail = userRepositry.findbyEmail(user.getUseremail());
-		if (byEmail.isPresent()) {
-			responce.EmailAllReadyPresent();
-			return responce;
-		} else
+        Optional<User> byEmail = userRepositry.findByEmail(user.getUseremail());
+        if (byEmail.isPresent()) {
+        	responce.EmailAllReadyPresent();
+            return responce;
+        }
 
-		user.setStatus(true);
-		userRepositry.save(user);
-		responce.setUserSaveResponse(user);
-		return responce;
-	}
+        // Set default role if not provided
+        if (user.getRole() == null) {
+            user.setRole(UserRole.USER);
+        }
+
+        user.setStatus(true);
+        userRepositry.save(user);
+        responce.setUserSaveResponse(user);
+        return responce;
+    }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//login user side
 	@Override
