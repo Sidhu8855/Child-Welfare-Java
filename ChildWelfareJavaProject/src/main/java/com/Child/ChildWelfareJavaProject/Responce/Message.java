@@ -19,6 +19,7 @@ public class Message {
 	public static String incorrect_email="Email Id Is Not Correct";
 	public static String login_successfully="login SuccessFull";
 	public static String invalid_User_Email="Email Id Is Not Correct";
+	public static String email_send_successfully="Email Send Successfully";
 	
 	public static final String User_Found="User Id Is Found";
 	

@@ -2,6 +2,7 @@ package com.Child.ChildWelfareJavaProject.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,11 @@ import com.Child.ChildWelfareJavaProject.Entity.User;
 import com.Child.ChildWelfareJavaProject.Entity.UserChild;
 import com.Child.ChildWelfareJavaProject.Responce.Responce;
 import com.Child.ChildWelfareJavaProject.dto.LoginRequest;
+
+import com.Child.ChildWelfareJavaProject.emailServce.MailService;
 import com.Child.ChildWelfareJavaProject.repositry.ChildRepositry;
 import com.Child.ChildWelfareJavaProject.repositry.UserChildrepo;
+import com.Child.ChildWelfareJavaProject.repositry.UserRepositry;
 import com.Child.ChildWelfareJavaProject.service.UserService;
 
 //@CrossOrigin(origins = "http://localhost:8100")
@@ -146,5 +150,37 @@ public class UserController {
 	       return new ResponseEntity<>("Failed to upload file",HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
+	
+	
+	
+	@Autowired 
+	UserRepositry userRepositry;
+	@Autowired
+	private MailService mailService;
+	
+//	@PostMapping("/sendEmail")
+//	public Responce sendEmail(@RequestBody Mail info) {
+//		Mail mail = new Mail();
+//		Responce responce = new Responce();
+//		Optional<User> byEmail = userRepositry.findByEmail(info.getMailTo());
+//		System.out.println(byEmail);
+//		
+//		if(byEmail.isPresent()) {
+//			System.out.println("Email is " + byEmail.get().getUseremail());
+//		int randomNumber = (int) (Math.random() * 900000) + 100000;
+//		mail.setMailFrom("rajegoreyogesh@gmail.com");
+//		mail.setMailTo(info.getMailTo());
+//		mail.setMailSubject("OTP for forget Password");
+//		mail.setMailContent("Hello Mail send Successfully. Your OTP is : " + randomNumber);
+//		mailService.sendEmail(mail);
+//		//mailService.sendEmail(mail);
+//		responce.emailSendResponse(randomNumber);
+//		//System.out.println("hello"this.m);
+//		return responce;
+//		}else {
+//			responce.emailNotSend();
+//			return responce;
+//		}
+//	}
 
 }

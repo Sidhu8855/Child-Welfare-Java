@@ -5,9 +5,6 @@ import org.springframework.http.HttpStatusCode;
 
 import com.Child.ChildWelfareJavaProject.Entity.User;
 
-
-
-
 public class Responce {
 
 	private Object response;
@@ -142,6 +139,22 @@ public class Responce {
 	}
 
 	public void invalidEmail() {
+		this.response = null;
+		this.status = false;
+		this.statusCode = HttpStatus.NOT_FOUND;
+		this.message = Message.invalid_User_Email;
+		
+	}
+
+	public void emailSendResponse(int randomNumber) {
+		
+		this.response = randomNumber;
+		this.status = true;
+		this.statusCode = HttpStatus.OK;
+		this.message = Message.email_send_successfully;
+	}
+
+	public void emailNotSend() {
 		this.response = null;
 		this.status = false;
 		this.statusCode = HttpStatus.NOT_FOUND;
