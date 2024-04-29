@@ -243,7 +243,7 @@ public class UserController {
 		return userService.save(user);
 	}
 
-	@PostMapping("/login")
+	@PostMapping("login")
 	public Responce login(@RequestBody LoginRequest loginRequest) {
 		return userService.loginUser(loginRequest);
 	}
